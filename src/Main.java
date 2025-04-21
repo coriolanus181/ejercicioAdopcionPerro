@@ -39,10 +39,7 @@ public class Main {
                     documentoP = teclado.nextLine();
 
                     personas.add(new Persona(nombreP, apellidoP, edadP, documentoP));
-                    System.out.println("Personas registradas ");
-                    for (Persona p : personas) {
-                        p.toString();
-                    }
+
 
                 }
                 case 2 -> {
@@ -63,13 +60,16 @@ public class Main {
                 }
 
                 case 3 -> {
-
+                    System.out.println("Personas registradas ");
+                    for (Persona p : personas) {
+                        System.out.println(p);
+                    }
                 }
 
                 case 4 -> {
                     System.out.println("Perros disponibles");
                     for (Perro c : perros) {
-                        c.toString();
+                        System.out.println(c);
                     }
                 }
 
