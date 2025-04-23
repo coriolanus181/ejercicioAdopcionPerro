@@ -6,16 +6,20 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
         Scanner teclado = new Scanner(System.in);
         boolean estado = true;
         String nombreP, apellidoP, documentoP,nombrePe,raza,tamano,placa;
 
         int opc,edadP,edadPE;
+
+        String documento;
         List<Persona> personas = new ArrayList<>();
         List<Perro> perros = new ArrayList<>();
+        List<Perro> adoptados = new ArrayList<>();
         do {
-            System.out.println("Bienvenido a la adopción del perro");
-            System.out.println("1.Registrar personda");
+            System.out.println("Bienvenido a la adopción de perros");
+            System.out.println("1.Registrar persona");
             System.out.println("2.Registrar Perros");
             System.out.println("3.Ver personas registradas");
             System.out.println("4. Ver perros disponibles");
@@ -60,21 +64,71 @@ public class Main {
                 }
 
                 case 3 -> {
-                    System.out.println("Personas registradas ");
+                    teclado.nextLine();
+                    System.out.print("Personas registradas ");
+                    System.out.println("\nIngrese el documento de la persona");
+                     documento= teclado.nextLine();;
                     for (Persona p : personas) {
-                        System.out.println(p);
+                        if (p.getDocumento().equals(documento)){
+                            System.out.println(p);
+                            break;
+                        }else{
+                            System.out.println("persona no encontrada");
+                        }
+                        // System.out.println(p);
+
                     }
                 }
 
                 case 4 -> {
                     System.out.println("Perros disponibles");
+
                     for (Perro c : perros) {
                         System.out.println(c);
                     }
+
+
+
                 }
 
                 case 5 -> {
 
+                    teclado.nextLine();
+                    System.out.print("¿Qué perro desea adoptar? escriba la placa del perro");
+                    placa= teclado.nextLine();
+                    System.out.println("Escriba el documento de la persona , que va adoptar el perro");
+                    documento  = teclado.nextLine();
+                    for (Perro c : perros) {
+                        // System.out.println(c);
+                        if (c.getPlaca().equals(placa)) {
+                            // System.out.println(c.getNombre());
+                            // for (Perro a : adoptados) {
+
+
+                            for (Persona p : personas) {
+
+                                if (p.getDocumento().equals(documento)) {
+                                    p.adoptarPerro(c);
+
+                                    break;
+
+                                }
+
+                            }
+
+                            perros.remove(c);
+                            break;
+                            //  System.out.println();
+
+                        }
+                    }
+
+                }
+
+                case 6 -> {
+                    for(Persona p: personas){
+                        System.out.println("el perro con mayor edad adoptado es "+p.perroMasGrande());
+                    }
                 }
 
                 case 7 -> {
